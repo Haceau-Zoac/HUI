@@ -18,29 +18,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hui.window.ixx">
+    <ClCompile Include="window.hpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="hui.window_class.ixx">
+    <ClCompile Include="window_class.hpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="hui.application.ixx">
+    <ClCompile Include="application.hpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="hui.type.ixx">
+    <ClCompile Include="type.hpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Demo\HelloWorld\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="hui.msgbox.ixx">
+    <ClCompile Include="device_context.hpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="hui.controls.rectangle.ixx">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controls\color.hpp">
       <Filter>头文件\controls</Filter>
-    </ClCompile>
-    <ClCompile Include="hui.controls.control.ixx">
+    </ClInclude>
+    <ClInclude Include="controls\rectangle.hpp">
       <Filter>头文件\controls</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="controls\brush.hpp">
+      <Filter>头文件\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\control.hpp">
+      <Filter>头文件\controls</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

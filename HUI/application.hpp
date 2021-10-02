@@ -1,12 +1,11 @@
-module;
+#pragma once
+#ifndef _HUI_APPLICATION_
+#define _HUI_APPLICATION_
 #include <Windows.h>
 #include <type_traits>
-export module hui.application;
+#include "type.hpp"
 
-export import hui.type;
-import hui.window;
-
-export namespace hui
+namespace hui
 {
   template <typename W>
   class application
@@ -31,3 +30,4 @@ export namespace hui
     }
   };
 }
+#endif // !_HUI_APPLICATION_

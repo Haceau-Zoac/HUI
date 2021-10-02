@@ -1,10 +1,11 @@
-module;
+#pragma once
+#ifndef _HUI_WINDOW_CLASS_
+#define _HUI_WINDOW_CLASS_
 #include <Windows.h>
 #include <functional>
-export module hui.window_class;
-export import hui.type;
+#include "type.hpp"
 
-export namespace hui
+namespace hui
 {
   class window_class
   {
@@ -32,3 +33,5 @@ export namespace hui
     WNDCLASSW window_class_;
   };
 }
+
+#endif // !_HUI_WINDOW_CLASS_
