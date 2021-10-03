@@ -50,5 +50,14 @@
     <ClInclude Include="controls\control.hpp">
       <Filter>头文件\controls</Filter>
     </ClInclude>
+    <ClInclude Include="msgbox.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\text.hpp">
+      <Filter>头文件\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\drawable.hpp">
+      <Filter>头文件\controls</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

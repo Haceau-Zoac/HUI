@@ -23,20 +23,13 @@ namespace hui
     void begin_paint() { dc_ = BeginPaint(window_, &ps_); }
     void end_paint() { EndPaint(window_, &ps_); }
 
-    void draw_rectangle(rect rectangle)
-    {
-      Rectangle(dc_, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
-    }
+    void set_brush(controls::brush br) { SelectObject(dc_, static_cast<brush_handle>(br)); }
+    void repaint(rect* rectangle = nullptr) { InvalidateRect(window_, rectangle, false); }
+    void set_background_mode(int mode) { SetBkMode(dc_, mode); }
 
-    void set_brush(controls::brush br)
-    {
-      SelectObject(dc_, static_cast<brush_handle>(br));
-    }
+    device_context_handle& dc() { return dc_; }
 
-    void repaint(rect* rectangle = nullptr)
-    {
-      InvalidateRect(window_, rectangle, false);
-    }
+    static constexpr int background_mode_transparent = TRANSPARENT;
   protected:
     device_context_handle dc_{ nullptr };
     window_handle window_;

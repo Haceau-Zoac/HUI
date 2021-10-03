@@ -158,7 +158,10 @@
     <ClInclude Include="controls\brush.hpp" />
     <ClInclude Include="controls\color.hpp" />
     <ClInclude Include="controls\control.hpp" />
+    <ClInclude Include="controls\drawable.hpp" />
     <ClInclude Include="controls\rectangle.hpp" />
+    <ClInclude Include="controls\text.hpp" />
+    <ClInclude Include="msgbox.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

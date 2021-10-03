@@ -62,6 +62,13 @@ namespace hui
     }
 
     void add_control(controls::control* control) { children_.push_back(control); control->set_dc(&dc_); }
+    template <typename Arg, typename... Args>
+    void add_controls(Arg* control, Args*... controls)
+    {
+      add_control(control);
+      if constexpr (sizeof...(controls) > 0)
+        add_controls(controls...);
+    }
 
     virtual void on_create() { };
     virtual void on_paint([[maybe_unused]] device_context& dc) { }
@@ -78,7 +85,7 @@ namespace hui
       dc_.begin_paint();
       for (auto iter = children_.begin(); iter != children_.end(); ++iter)
       {
-        if (*iter != nullptr) (*iter)->draw();
+        if (*iter != nullptr) (*iter)->paint();
         else children_.erase(iter);
       }
       on_paint(dc_);
@@ -96,19 +103,42 @@ namespace hui
       PostQuitMessage(0);
     }
 
-    void mousemove([[maybe_unused]] WPARAM wparam, LPARAM lparam)
+    point mouse_position(LPARAM lparam)
     {
       int x = GET_X_LPARAM(lparam);
       int y = GET_Y_LPARAM(lparam);
+      return {x, y};
+    }
+
+    bool point_in_rect(point pt, rect r)
+    {
+      return r.left < pt.x
+        && r.right  > pt.x
+        && r.top < pt.y
+        && r.bottom > pt.y;
+    }
+
+    void lbuttondown(LPARAM lparam)
+    {
+      point pt = mouse_position(lparam);
       for (auto&& child : children_)
       {
-        rect area = child->area();
-        if (area.left < x && area.right  > x
-          && area.top  < y && area.bottom > y)
-          child->hover(x, y);
+        if (point_in_rect(pt, child->area()))
+        {
+          child->on_click(pt);
+          break;
+        }
+      }
+    }
+
+    void mousemove(LPARAM lparam)
+    {
+      point pt = mouse_position(lparam);
+      for (auto&& child : children_)
+        if (point_in_rect(pt, child->area()))
+          child->hover(pt);
         else
           child->leave();
-      }
     }
 
     LRESULT handle_message(unsigned int msg, WPARAM wparam, LPARAM lparam) noexcept
@@ -121,8 +151,11 @@ namespace hui
       case WM_PAINT:
         paint();
         break;
+      case WM_LBUTTONDOWN:
+        lbuttondown(lparam);
+        break;
       case WM_MOUSEMOVE:
-        mousemove(wparam, lparam);
+        mousemove(lparam);
         break;
       case WM_DESTROY:
         destory();

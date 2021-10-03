@@ -21,7 +21,7 @@ namespace hui::controls
     brush() noexcept { }
     brush(gdi_object_handle gdi_object) noexcept
       : brush_(static_cast<brush_handle>(gdi_object)) { }
-    brush(type brush_type, color c)
+    brush(color c, type brush_type = type::solid)
     {
       switch (brush_type)
       {

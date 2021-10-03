@@ -16,7 +16,6 @@ namespace hui
   using int64 = INT64;
 
   using point = POINT;
-
   using rect = RECT;
 }
 #endif // !_HUI_TYPE_
